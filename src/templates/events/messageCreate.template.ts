@@ -24,7 +24,7 @@ export function messageCreateTemplate(ctx: RenderContext, fragments: string[]): 
 
   return `module.exports = {
   name: 'messageCreate',
-  execute(message, client) {
+  async execute(message, client) {
     if (message.author.bot) return;
     if (!message.guild) return;
 ${prefixConst}${fragmentCode}${prefixDispatch}
