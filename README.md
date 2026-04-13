@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# Discord Bot Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**[한국어](README.ko.md) · [日本語](README.ja.md)**
 
-Currently, two official plugins are available:
+A web-based wizard that generates a ready-to-run [discord.js v14](https://discord.js.org/) bot project as a ZIP file — no sign-up required.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live:** https://gminji.github.io/Discord-Bot-Generator/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+Select the modules you need, configure them, and download a complete bot project:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Module | Commands / Features |
+|---|---|
+| **Moderation** | kick, ban, mute/timeout, warn, unban, purge |
+| **Utility** | ping, serverinfo, userinfo, avatar, help, rolelist |
+| **Fun** | magic 8-ball, dice roll, joke, coin flip |
+| **Economy** | balance, daily, work, pay, leaderboard (JSON, no DB) |
+| **AutoMod** | profanity filter, spam detection, link blocker |
+| **Welcome** | welcome & goodbye messages |
+| **Reaction Roles** | reaction → role mapping |
+| **Auto Responder** | keyword/phrase auto-reply |
+| **Poll** | emoji voting polls (up to 5 options) |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Command styles:** Slash commands (`/`) or Prefix commands (e.g. `!`)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Languages:** English · 日本語 · 한국어
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## How to use
+
+1. Open the live site
+2. **Step 1 — Features:** Select the modules and sub-commands you want
+3. **Step 2 — Config:** Set bot prefix, channel IDs, economy values, etc.
+4. **Step 3 — Download:** Review and download the generated ZIP
+
+### After downloading
+
+```bash
+# 1. Extract the ZIP
+# 2. Copy the example env file
+cp .env.example .env
+# Fill in your bot token in .env
+
+# 3. Install dependencies
+npm install
+
+# 4. (Slash commands only) Register commands once
+node deploy-commands.js
+
+# 5. Start the bot
+npm start
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/) — state management
+- [JSZip](https://stuk.github.io/jszip/) + [file-saver](https://github.com/eligrey/FileSaver.js/) — ZIP generation
+
+---
+
+## Local development
+
+```bash
+npm install
+npm run dev
 ```
+
+```bash
+npm run build    # production build
+npm run preview  # preview production build
+npm run lint     # ESLint
+```
+
+---
+
+## License
+
+MIT
